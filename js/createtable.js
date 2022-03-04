@@ -14,7 +14,12 @@ function addRow(county) {
   let cell5 = row.insertCell(4);
 
   cell1.innerText = county.countyCode;
-  cell2.innerText = county.name;
+
+  //Tilføj update på navn
+  const input = document.createElement('input');
+  input.type = "text";
+  input.setAttribute("value", county.name);
+  cell2.appendChild(input);
 
   //A tag with href - lav om til på navn
   const atag = document.createElement('a');
@@ -32,6 +37,47 @@ function addRow(county) {
     deleteRow(county, row);
   }
   cell4.appendChild(pbDelete);
+
+  //Update knap
+  const pbUpdate = document.createElement('input');
+  pbUpdate.type = "button";
+  pbUpdate.setAttribute('value', 'Update County');
+  pbUpdate.onclick = function () {
+    updateRow(county, row, input);
+  }
+  cell5.appendChild(pbUpdate);
+}
+
+async function updateRow(county, row, inputfield) {
+  out(county);
+  county.name = inputfield.value;
+
+  const response = await restUpdateCounty(county);
+  out("Updatet in db");
+  out(response);
+  inputfield.setAttribute('readonly', 'readonly');
+}
+
+async function restUpdateCounty(county) {
+  const url = "http://localhost:8080/county/" + county.countyCode;
+
+  const fetchOptions = {
+    method: "PUT",
+    headers: {
+      "Content-type" : "application/json"
+    },
+    body: ""
+  }
+
+  const jsonString = JSON.stringify(county);
+  fetchOptions.body = jsonString;
+
+  const response = await fetch(url, fetchOptions);
+
+  if (!response.ok) {
+    out("Det gik ikke så godt")
+  }
+  return response;
 }
 
 async function deleteRow(county, row) {
