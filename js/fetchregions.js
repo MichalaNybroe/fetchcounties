@@ -9,18 +9,19 @@ function fetchAllRegions() {
 function actionFetchAllRegions() {
   const promise = fetchAllRegions();
   promise.then(createRegionMap);
+  out("fetch regions");
 }
 
 const regionMap = new Map();
 function createRegionMap(regionList) {
-  regionList.forEach((region, index) => {
+  regionList.forEach((region) => {
     regionMap.set(region.regionCode, region);
   })
 }
 
 function showRegionMap() {
   for (const regionKey of regionMap.keys) {
-    out(regionsMap.get(regionKey));
+    out(regionMap.get(regionKey));
   }
 }
 

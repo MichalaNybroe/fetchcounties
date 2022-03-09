@@ -1,0 +1,101 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 400px;
+  margin: 60%;
+  margin: 0 auto;
+}
+
+#buttons {
+  /** grid vs flexbox*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto 20px 0;
+  /** gap dur ikke i safari så brug evt margin på buttons*/
+  gap: 20px;
+}
+
+.table {
+  border-collapse: collapse;
+  margin: 25px auto;
+  font-size: 0.9em;
+  min-width: 400px;
+  /** overflow gør det muligt at se dem som ikke celler*/
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0,0,0,0.15);
+  border-radius: 5px 5px 0 0;
+}
+
+.table thead tr {
+  background-color: #009789;
+  color: #ffffff;
+  text-align: left;
+  font-weight: bold;
+}
+
+.table td, .table th {
+  padding: 12px 15px;
+}
+
+.table tbody tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.table tbody tr th {
+  background-color: #009789;
+  color: #f3f3f3;
+}
+
+.table tbody tr:nth-last-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.table tbody tr:last-of-type{
+  border-bottom: 2px solid #009789;
+}
+
+input[type="text"], input[type="button"] {
+  border-radius: 10px;
+  padding: 12px 15px;
+  border: 1px solid black;
+}
+
+input[type="button"] {
+  border: none;
+}
+
+input[type="button"]:hover {
+  background-color: #009789;
+  cursor: pointer;
+}
+
+a, a:visited, a:active {
+  color: #323a40;
+  text-decoration: none;
+}
+
+a:hover {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.buttonOption {
+  padding: 12px 15px;
+  background-color: #009789;
+  color: #f3f3f3;
+  font-weight: bold;
+  border-radius: 10px;
+  border: none;
+}
+
+h1, h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-family: "Times New Roman";
+}

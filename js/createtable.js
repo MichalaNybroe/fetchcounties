@@ -75,9 +75,6 @@ regionMap.forEach(region => {
     updateRow(county, row, input);
   }
   cell.appendChild(pbUpdate);
-
-
-
 }
 
 async function updateRow(county, row, inputfield) {

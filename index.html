@@ -4,31 +4,35 @@
 <head>
   <meta charset="utf-8">
   <title>Create County Table</title>
+  <link rel="stylesheet" href="css/stylevedjonas.css">
 </head>
 
 <body>
-<h1>Counties</h1>
+<div id="container">
+  <h1>Counties</h1>
 
-<button id="pbGetCounties">Get Counties</button>
-<button id="pbShowCountyMap">Show Counties</button>
-<button id="pbGetRegions">Get Regions</button>
-<button id="pbCreateTable">Create Table</button>
+  <div id="buttons">
+    <button id="pbGetCounties" class="buttonOption">Get Counties</button>
+    <button id="pbShowCountyMap" class="buttonOption">Show Counties</button>
+    <button id="pbGetRegions" class="buttonOption">Get Regions</button>
+    <button id="pbCreateTable" class="buttonOption">Create Table</button>
+  </div>
 
+  <div class="div1">
+    <h2>Counties</h2>
+    <table class="table" id="countyTable">
+      <tr>
+        <th>County Code</th>
+        <th>County Name</th>
+        <th>County href</th>
+        <th>Region Code</th>
+        <th>Region Name</th>
+        <th>Delete</th>
+        <th>Update</th>
+      </tr>
+    </table>
 
-<div class="div1">
-  <h2>Counties</h2>
-  <table class="table" id="countyTable">
-    <tr>
-      <th>County Code</th>
-      <th>County Name</th>
-      <th>County href</th>
-      <th>Region Code</th>
-      <th>Region Name</th>
-      <th>Delete</th>
-      <th>Update</th>
-    </tr>
-  </table>
-
+  </div>
 </div>
 
 <script src="js/fetchcounties.js"></script>
