@@ -5,29 +5,57 @@ function createTableFromMap() {
 }
 
 function addRow(county) {
-  let rowCount = countyTable.rows.length
-  let row = countyTable.insertRow(rowCount);
-  let cell1 = row.insertCell(0);
-  let cell2 = row.insertCell(1);
-  let cell3 = row.insertCell(2);
-  let cell4 = row.insertCell(3);
-  let cell5 = row.insertCell(4);
+  const rowCount = countyTable.rows.length;
+  let colCount = 0;
 
-  cell1.innerText = county.countyCode;
+  let row = countyTable.insertRow(rowCount);
+  let cell = row.insertCell(colCount++);
+
+  cell.innerText = county.countyCode;
 
   //Tilføj update på navn
+  cell = row.insertCell(colCount++);
   const input = document.createElement('input');
   input.type = "text";
   input.setAttribute("value", county.name);
-  cell2.appendChild(input);
+  cell.appendChild(input);
 
   //A tag with href - lav om til på navn
+  cell = row.insertCell(colCount++);
   const atag = document.createElement('a');
   atag.setAttribute("href", county.href);
   atag.innerText = county.name;
-  cell3.appendChild(atag);
+  cell.appendChild(atag);
+
+// regionskode
+  cell = row.insertCell(colCount++);
+  cell.innerText = county.region.regionCode;
+
+//create dropdown
+cell = row.insertCell(colCount++);
+const dropDownRegion = document.createElement("select");
+let ix = 0;
+regionMap.forEach(region => {
+  const element = document.createElement("option");
+  element.textContent = region.name;
+  element.value = region.regionCode;
+  dropDownRegion.appendChild(element);
+  if (region.regionCode == county.region.regionCode) {
+    dropDownRegion.selectedIndex = ix;
+  }
+  ix++;
+
+  //key og value er essentielt her --> vi finder input på value og ændrer region herefter
+  dropDownRegion.addEventListener("change", event =>{
+    const selectedInput = dropDownRegion.selectedIndex;
+    const option = dropDownRegion.options[selectedInput];
+    county.region = regionMap.get(option.value);
+  })
+})
+  cell.appendChild(dropDownRegion);
 
   //Slet knap
+  cell = row.insertCell(colCount++);
   const pbDelete = document.createElement('input');
   pbDelete.type = "button";
   pbDelete.setAttribute('value', 'Delete County');
@@ -36,16 +64,20 @@ function addRow(county) {
     // Godt til eksamen at vise dynamisk ændring af html fremfor reload
     deleteRow(county, row);
   }
-  cell4.appendChild(pbDelete);
+  cell.appendChild(pbDelete);
 
   //Update knap
+  cell = row.insertCell(colCount++);
   const pbUpdate = document.createElement('input');
   pbUpdate.type = "button";
   pbUpdate.setAttribute('value', 'Update County');
   pbUpdate.onclick = function () {
     updateRow(county, row, input);
   }
-  cell5.appendChild(pbUpdate);
+  cell.appendChild(pbUpdate);
+
+
+
 }
 
 async function updateRow(county, row, inputfield) {
