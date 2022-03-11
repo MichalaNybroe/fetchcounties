@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Input County</title>
+</head>
+<body>
+
+<h1>Insert County</h1>
+
+<div>
+<form action="http://localhost:8080/county" method="post" id="newCountyForm">
+  <label for="countyCode"></label>
+  <input type="text" name="countyCode" placeholder="eks 4565" id="countyCode">
+  <label for="name"></label>
+  <input type="text" name="name" placeholder="Brønsholme" id="name">
+  <label for="href"></label>
+  <input type="text" name="href" placeholder="http://hotspot.dk" id="href">
+
+  <button type="submit" title="Save" id="submit">Create</button>
+</form>
+</div>
+
+<script src="js/insertform.js"></script>
+</body>
+</html>
